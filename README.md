@@ -124,18 +124,80 @@ Usamos o laço de repetição `for` para juntar todos os dados e armazena-los no
 for i in range(len(emails_aleatorios)):
     print(f"('{nomes_de_pessoas[i]}', '{endereco_cl[i]}', 'Diamantina', '{emails_aleatorios[i]}', {numeros_clientes[i]}),")
 ```
-### Tabela Restaurantes
+### Tabela Restaurantes e Tabela de Produtoss
 
-Toda a tabela de restaurante foi criada de forma manual, e assim como na tabela de clientes, definimos a cidade como **Diamantina**
+Ambas as tabelas foram criadas manualmente, e assim como na tabela de clientes, definimos a cidade como **Diamantina**.
 
 Assim como na tabela de cliente, foi utilizando o laço de repetição `for` para preparar os dados a serem inseridos no banco de dados:
 
-```Python
+**Tabela Restaurante:**
 
+```Python
 tuplas_end = []
 for i in range(len(nomes_de_ruas_sp)):
     print(f"('{nomes_de_restaurantes_sp[i]}', '{nomes_de_ruas_sp[i]}', 'Diamantina', {numeros_restaurantes[i]})")
 ```
+
+**Tabela Produtos:**
+
+```Python
+for i in range(len(itens)):
+    print(f"({id_rest[i]}, '{itens[i].title()}', {valores[i]}),")
+```
+
+
+### Tabela Pedidos
+
+Assim como nas tabelas anteriores os valores e o itens da Tabela Pedidos foram criados de forma manual, porém, para criar o status, data e hora do pedido foi feita uma função para criar essas dados de forma aleatória.
+
+```Python
+import random
+lista_status = ["Cancelado","Entregue"]
+from datetime import datetime, timedelta
+
+# Número total de horários desejados
+total_horarios = 100
+
+# Lista para armazenar os horários gerados
+horarios_gerados = []
+
+# Gerar 100 horários entre 12h e 2h
+for _ in range(total_horarios):
+    horario_aleatorio = datetime(2023, 1, 1,
+                                 hour=random.randint(0, 1),
+                                 minute=random.randint(0, 59),
+                                 second=random.randint(0, 59))
+    horarios_gerados.append(horario_aleatorio)
+
+# Imprimir os horários gerados
+for horario in horarios_gerados:
+    print(horario.strftime('%Y-%m-%d %H:%M:%S'))
+```
+
+
+```Python
+from datetime import datetime, timedelta
+
+# Lista para armazenar os horários
+lista_horarios = []
+
+# Gerar 100 datas e horários aleatórios para o ano de 2023
+for _ in range(100):
+    data_aleatoria = datetime(2023, 1, 1) + timedelta(days=random.randint(0, 364),
+                                                        hours=random.randint(0, 23),
+                                                        minutes=random.randint(0, 59),
+                                                        seconds=random.randint(0, 59))
+    lista_horarios.append(data_aleatoria)
+
+# Filtrar apenas os horários entre 12h e 2h da manhã
+horarios_filtrados = [horario for horario in lista_horarios if 0 <= horario.hour < 2 or 12 <= horario.hour < 24]
+
+# Imprimir a lista filtrada
+for horario in horarios_filtrados:
+    print(f"('{horario}', '{random.choice(lista_status)}', {round(random.uniform(10.0,200.0),2)}, {random.randrange(1,10)})")
+```
+
+Por fim, para inserirmos os dados, desta vez fizemos uma maneira diferente reunimos todos os dados e adicionamos todos eles, sem a necessidade de um laço for.
 
 
 # Perguntas e respostas utilizando as querys do Bando de Dados 📝
