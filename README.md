@@ -1,6 +1,6 @@
-# Modelagem e criação de dados com Postgres para a "DeliFoods"🍔
+# Modelagem e criação de banco de dados com PostgreSQL para a "DeliFoods"🍔
 
-Este é um projeto desenvolvido para o módulo de Modelagem de Banco de Dados para o Curso de Análise de Dados da Ada.tech, em parceria com o Ifood
+Este é um projeto desenvolvido para o módulo de Modelagem de Banco de Dados para o Curso de Análise de Dados da Ada.tech, em parceria com o Ifood. Nele, fomos desafiados a escolher um modelo de negócio, e agir como uma consultoria de tecnologia contratada para estruturar um banco de dados completo utilizando PostgreSQL
 
 # Integrantes do projeto 👥
 - [Alan Gonçalves](https://github.com/alansgoncalves)
@@ -13,9 +13,9 @@ Este é um projeto desenvolvido para o módulo de Modelagem de Banco de Dados pa
 
 👉 _[Clique aqui para ler o briefing do projeto](https://github.com/gudaoliveira/delicia-foods_modelagem_banco_de_dados/blob/main/briefing.md)_
 
-DeliFoods, um inovador sistema de administraçao de dados, conecta os amantes da culinária local aos seus restaurantes favoritos de uma maneira mais fácil e eficiente.
+*DeliFoods, um negócio inovador que conecta os amantes da culinária local aos seus restaurantes favoritos de uma maneira mais fácil e eficiente.*
 
-O segredo por trás do sucesso do DeliFoods reside em uma modelagem de banco de dados robusta. Cada restaurante é cuidadosamente registrado, detalhes dos pedidos são registrados minuciosamente, e os produtos deliciosos são catalogados para garantir uma experiência de pedidos fluida e sem complicações.
+*Cada restaurante, desde os clientes até os detalhes dos pedidos são registrados minuciosamente, e os produtos deliciosos são catalogados para garantir uma experiência de pedidos fluida e sem complicações.*
 
 ## MODELAGEM DE DADOS 🗂️
 
@@ -83,13 +83,13 @@ Com as tabelas criadas, precisamos definir quais serão os relacionamentos entre
     Relacionamento entre pedidos e detalhes_pedidos:
     > Um pedido pode ter muitos produtos, e um produto pode estar em muitos pedidos. Portanto, é um relacionamento "Muitos para Muitos" (M:N).
 
----
-
 ![diagrama](img/diagrama.png)
 
-# Implementação do Banco de Dados 🛢️
+# Alimentando o Banco de Dados 🛢️
 
-## Tabela Clientes
+Neste projeto ficamos responsáveis por todos os processos, inclusive o de preencher as tabelas, e para isso decidimos buscar maneiras para automatizar o processo.
+
+## Preenchendo a Tabela Clientes
 
 Os atributos `nomes_de_pessoas`, `endereco_cl` e `telefone_clientes` da Tabela Clientes foram gerados de forma manual. Os e-mails foram feitos através da seguinte função em **Python**:
 
@@ -111,13 +111,13 @@ print(emails_aleatorios)
 
 ```
 
-Usamos o laço de repetição `for` para juntar todos os dados e armazena-los no banco de dados. Devinimos de forma prévia que usuáriamos somente uma única cidade, que neste caso seria a Cidade de **Diamantina**
+Usamos o laço de repetição `for` para juntar todos os dados e armazená-los no banco de dados. Definimos de forma prévia que usaríamos somente uma única cidade, que neste caso seria a Cidade de **Diamantina**
 
 ```Python
 for i in range(len(emails_aleatorios)):
     print(f"('{nomes_de_pessoas[i]}', '{endereco_cl[i]}', 'Diamantina', '{emails_aleatorios[i]}', {numeros_clientes[i]}),")
 ```
-## Tabela Restaurantes e Tabela de Produtos
+## Preenchendo a Tabela Restaurantes e Tabela de Produtos
 
 Ambas as tabelas foram criadas manualmente, e assim como na tabela de clientes, definimos a cidade como **Diamantina**.
 
@@ -139,7 +139,7 @@ for i in range(len(itens)):
 ```
 
 
-## Tabela Pedidos
+## Preenchendo a Tabela Pedidos
 
 Assim como nas tabelas anteriores os valores e o itens da Tabela Pedidos foram criados de forma manual, porém, para criar o status, data e hora do pedido foi feita uma função para criar essas dados de forma aleatória.
 
@@ -190,7 +190,9 @@ for horario in horarios_filtrados:
     print(f"('{horario}', '{random.choice(lista_status)}', {round(random.uniform(10.0,200.0),2)}, {random.randrange(1,10)})")
 ```
 
-Por fim, para inserirmos os dados, desta vez fizemos uma maneira diferente reunimos todos os dados e adicionamos todos eles, sem a necessidade de um laço for.
+Com os dados gerados, decidimos montar a estrutura no Google Sheets para entender se a mesma estava coerente. Também utilizamos algumas formulas do Sheets para terminar de preencher alguns dos dados necessários
+
+👉 [Clique aqui para ver a nossa planilha com a estrutura](https://docs.google.com/spreadsheets/d/1Ij2seaYUdpKSak54F4kupJ0NpWYyTW4HV-aRzSyYILc/edit?usp=sharing)
 
 
 # Perguntas e respostas utilizando as querys do Bando de Dados 📝
