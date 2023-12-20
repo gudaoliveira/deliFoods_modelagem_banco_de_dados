@@ -91,14 +91,7 @@ Com as tabelas criadas, precisamos definir quais serão os relacionamentos entre
 
 ### Tabela Clientes
 
-A Tabela Clientes tem os seguintes atributos:
-1. `id_produto`
-2. `nomes_de_pessoas`
-3. `endereco_cl`
-4. `emails_aleatorios`
-5. `telefone_clientes` 
-
-Os atributos `nomes_de_pessoas`, `endereco_cl` e `telefone_clientes` foram gerados de forma manual. Os e-mails foram feitos através da seguinte função em **Python**:
+Os atributos `nomes_de_pessoas`, `endereco_cl` e `telefone_clientes` da Tabela Clientes foram gerados de forma manual. Os e-mails foram feitos através da seguinte função em **Python**:
 
 ```Python
 import random
