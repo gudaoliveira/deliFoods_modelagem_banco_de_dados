@@ -89,6 +89,54 @@ Com as tabelas criadas, precisamos definir quais serão os relacionamentos entre
 
 # Implementação do Banco de Dados 🛢️
 
+### Tabela Clientes
+
+A Tabela Clientes tem os seguintes atributos:
+1. `id_produto`
+2. `nomes_de_pessoas`
+3. `endereco_cl`
+4. `emails_aleatorios`
+5. `telefone_clientes` 
+
+Os atributos `nomes_de_pessoas`, `endereco_cl` e `telefone_clientes` foram gerados de forma manual. Os e-mails foram feitos através da seguinte função em **Python**:
+
+```Python
+import random
+import string
+
+def gerar_email():
+    nome = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(5, 10)))
+    dominio = ''.join(random.choice(string.ascii_lowercase) for _ in range(random.randint(5, 10)))
+    extensao = random.choice(['com', 'net', 'org', 'gov'])
+
+    return f"{nome}@{dominio}.{extensao}"
+
+emails_aleatorios = [gerar_email() for _ in range(30)]
+
+# Exemplo de uso:
+print(emails_aleatorios)
+
+```
+
+Usamos o laço de repetição `for` para juntar todos os dados e armazena-los no banco de dados. Devinimos de forma prévia que usuáriamos somente uma única cidade, que neste caso seria a Cidade de **Diamantina**
+
+```Python
+for i in range(len(emails_aleatorios)):
+    print(f"('{nomes_de_pessoas[i]}', '{endereco_cl[i]}', 'Diamantina', '{emails_aleatorios[i]}', {numeros_clientes[i]}),")
+```
+### Tabela Restaurantes
+
+Toda a tabela de restaurante foi criada de forma manual, e assim como na tabela de clientes, definimos a cidade como **Diamantina**
+
+Assim como na tabela de cliente, foi utilizando o laço de repetição `for` para preparar os dados a serem inseridos no banco de dados:
+
+```Python
+
+tuplas_end = []
+for i in range(len(nomes_de_ruas_sp)):
+    print(f"('{nomes_de_restaurantes_sp[i]}', '{nomes_de_ruas_sp[i]}', 'Diamantina', {numeros_restaurantes[i]})")
+```
+
 
 # Perguntas e respostas utilizando as querys do Bando de Dados 📝
 
