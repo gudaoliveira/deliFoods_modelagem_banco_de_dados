@@ -89,7 +89,7 @@ Com as tabelas criadas, precisamos definir quais serão os relacionamentos entre
 
 Neste projeto ficamos responsáveis por todos os processos, inclusive o de preencher as tabelas, e para isso decidimos buscar maneiras para automatizar o processo.
 
-## Preenchendo a Tabela Clientes
+## Criando os dados da Tabela Clientes
 
 Os atributos `nomes_de_pessoas`, `endereco_cl` e `telefone_clientes` da Tabela Clientes foram gerados de forma manual. Os e-mails foram feitos através da seguinte função em **Python**:
 
@@ -117,7 +117,7 @@ Usamos o laço de repetição `for` para juntar todos os dados e armazená-los n
 for i in range(len(emails_aleatorios)):
     print(f"('{nomes_de_pessoas[i]}', '{endereco_cl[i]}', 'Diamantina', '{emails_aleatorios[i]}', {numeros_clientes[i]}),")
 ```
-## Preenchendo a Tabela Restaurantes e Tabela de Produtos
+## Criando os dados para Tabela Restaurantes e Tabela de Produtos
 
 Ambas as tabelas foram criadas manualmente, e assim como na tabela de clientes, definimos a cidade como **Diamantina**.
 
@@ -139,7 +139,7 @@ for i in range(len(itens)):
 ```
 
 
-## Preenchendo a Tabela Pedidos
+## Criando os dados para Tabela Pedidos
 
 Assim como nas tabelas anteriores os valores e o itens da Tabela Pedidos foram criados de forma manual, porém, para criar o status, data e hora do pedido foi feita uma função para criar essas dados de forma aleatória.
 
