@@ -308,6 +308,6 @@ LIMIT 5
 ![](img/query5.png)
 
 
-## Conclusão
+# Conclusão🏁
 
 Concluímos que as consultas SQL's apresentadas revelam a robustez do modelo, oferecendo insights valiosos para a gestão da plataforma DeliFoods. Desde a identificação dos produtos mais vendidos até o cálculo do ticket médio dos restaurantes e a análise dos clientes mais ativos, as consultas refletem a capacidade do banco de dados em fornecer informações estratégicas para tomada de decisões assertivas.
