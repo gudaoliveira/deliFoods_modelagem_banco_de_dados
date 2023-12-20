@@ -87,6 +87,235 @@ Com as tabelas criadas, precisamos definir quais serão os relacionamentos entre
 
 ![diagrama](img/diagrama.png)
 
+# Implementação do Banco de Dados 🛢️
+
+
+# Perguntas e respostas utilizando as querys do Bando de Dados 📝
+
+- Busca todos os produtos, qual restaurante vende, total de pedidos, valor total para cada produto pedido.
+
+```SQL
+SELECT
+    pr.id_produto,
+    pr.nome AS nome_produto,
+	pr.preco_unitario,
+    pr.id_restaurante,
+    r.nome AS nome_restaurante,
+    SUM(dp.quantidade) AS total_pedidos,
+	SUM(dp.quantidade * pr.preco_unitario) AS valor_total
+FROM
+    delifoods.detalhes_pedidos dp
+JOIN 
+    delifoods.produtos pr ON dp.id_produto = pr.id_produto
+JOIN 
+    delifoods.pedidos p ON dp.id_pedido = p.id_pedido
+JOIN 
+    delifoods.restaurante r ON pr.id_restaurante = r.id_restaurante
+WHERE p.status = 'Confirmado'
+GROUP BY
+    pr.id_produto,
+    pr.nome,
+	pr.preco_unitario,
+    pr.id_restaurante,
+    r.nome
+ORDER BY
+    id_restaurante
+```
+
+- Busca por produtos mais vendidos.
+
+```SQL
+SELECT
+    pr.id_produto,
+    pr.nome AS nome_produto,
+	pr.preco_unitario,
+    pr.id_restaurante,
+    r.nome AS nome_restaurante,
+    SUM(dp.quantidade) AS total_pedidos,
+	SUM(dp.quantidade * pr.preco_unitario) AS valor_total
+FROM
+    delifoods.detalhes_pedidos dp
+JOIN 
+    delifoods.produtos pr ON dp.id_produto = pr.id_produto
+JOIN 
+    delifoods.pedidos p ON dp.id_pedido = p.id_pedido
+JOIN 
+    delifoods.restaurante r ON pr.id_restaurante = r.id_restaurante
+WHERE p.status = 'Confirmado'
+GROUP BY
+    pr.id_produto,
+    pr.nome,
+	pr.preco_unitario,
+    pr.id_restaurante,
+    r.nome
+ORDER BY
+    total_pedidos DESC 
+```
+
+- Receita bruta de todos os restaurantes no ano de 2023.
+
+```SQL
+SELECT
+	r.nome,
+	SUM(dp.quantidade * pr.preco_unitario) AS renda_total
+FROM
+    delifoods.detalhes_pedidos dp
+JOIN 
+    delifoods.produtos pr ON dp.id_produto = pr.id_produto
+JOIN 
+    delifoods.pedidos p ON dp.id_pedido = p.id_pedido
+JOIN 
+    delifoods.restaurante r ON pr.id_restaurante = r.id_restaurante
+WHERE p.status = 'Confirmado'
+GROUP BY
+    r.nome
+```
+- Quanto os restaurantes perderam por cancelamento em 2023
+
+```SQL
+SELECT
+	r.nome,
+	SUM(dp.quantidade * pr.preco_unitario) AS renda_total
+FROM
+    delifoods.detalhes_pedidos dp
+JOIN 
+    delifoods.produtos pr ON dp.id_produto = pr.id_produto
+JOIN 
+    delifoods.pedidos p ON dp.id_pedido = p.id_pedido
+JOIN 
+    delifoods.restaurante r ON pr.id_restaurante = r.id_restaurante
+WHERE p.status = 'Cancelado'
+GROUP BY
+    r.nome
+ORDER BY renda_total DESC
+```
+
+- Restaurante com maior renda em 2023
+
+```SQL
+SELECT
+	r.nome,
+	SUM(dp.quantidade * pr.preco_unitario) AS renda_total
+FROM
+    delifoods.detalhes_pedidos dp
+JOIN 
+    delifoods.produtos pr ON dp.id_produto = pr.id_produto
+JOIN 
+    delifoods.pedidos p ON dp.id_pedido = p.id_pedido
+JOIN 
+    delifoods.restaurante r ON pr.id_restaurante = r.id_restaurante
+WHERE p.status = 'Confirmado'
+GROUP BY
+    r.nome
+ORDER BY renda_total DESC
+LIMIT 1
+```
+
+- Restaurante com menor renda em 2023
+
+```SQL
+SELECT
+	r.nome,
+	SUM(dp.quantidade * pr.preco_unitario) AS renda_total
+FROM
+    delifoods.detalhes_pedidos dp
+JOIN 
+    delifoods.produtos pr ON dp.id_produto = pr.id_produto
+JOIN 
+    delifoods.pedidos p ON dp.id_pedido = p.id_pedido
+JOIN 
+    delifoods.restaurante r ON pr.id_restaurante = r.id_restaurante
+WHERE p.status = 'Confirmado'
+GROUP BY
+    r.nome
+ORDER BY renda_total
+LIMIT 1
+```
+
+- Média geral de preços dos produtos em cada categoria
+
+```SQL
+SELECT
+	r.categoria AS tipo_restaurante,
+	ROUND(AVG(p.preco_unitario),2) AS media_preco
+FROM
+	delifoods.produtos p
+JOIN delifoods.restaurante r ON p.id_restaurante = r.id_restaurante
+GROUP BY r.categoria
+ORDER BY media_preco DESC
+```
+
+- Média de preços dos produtos por restaurante
+
+```SQL
+SELECT
+	r.nome,
+	r.categoria AS tipo_restaurante,
+	ROUND(AVG(p.preco_unitario),2) AS media_preco_produtos
+FROM
+	delifoods.produtos p
+JOIN delifoods.restaurante r ON p.id_restaurante = r.id_restaurante
+GROUP BY r.nome, r.categoria;
+```
+
+- Produto mais caro
+
+```SQL
+SELECT
+  pr.id_produto,
+  pr.id_restaurante,
+  pr.nome AS nome_produto,
+  pr.preco_unitario,
+  r.nome AS nome_restaurante
+FROM
+  delifoods.produtos pr
+  JOIN delifoods.restaurante r ON pr.id_restaurante = r.id_restaurante
+WHERE
+  (pr.id_restaurante, pr.preco_unitario) IN (
+    SELECT
+      id_restaurante,
+      MAX(preco_unitario) AS max_preco
+    FROM
+      delifoods.produtos
+    GROUP BY
+      id_restaurante
+  )
+```
+
+- Os 5 clientes que mais pediram
+
+```SQL
+SELECT 
+	cl.nome,
+	p.id_cliente,
+	COUNT(p.id_cliente) AS cliente_pedidos
+FROM
+	delifoods.clientes cl
+	JOIN delifoods.pedidos p ON cl.id_cliente = p.id_cliente
+GROUP BY cl.nome, p.id_cliente
+ORDER BY id_cliente
+LIMIT 5
+```
+
+- Os 5 clientes que mais gastaram
+
+```SQL
+SELECT 
+	cl.nome,
+	p.id_cliente,
+	p.id_restaurante,
+	SUM(p.id_cliente) AS cliente_pedidos
+FROM
+	delifoods.clientes cl
+	JOIN delifoods.pedidos p ON cl.id_cliente = p.id_cliente
+GROUP BY cl.nome, p.id_cliente, p.id_restaurante
+ORDER BY id_cliente
+LIMIT 5
+```
+
+
+# Conclusão 🏁
+
 
 ## 
 
