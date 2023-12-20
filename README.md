@@ -195,7 +195,7 @@ Com os dados gerados, decidimos montar a estrutura no Google Sheets para entende
 👉 [Clique aqui para ver a nossa planilha com a estrutura](https://docs.google.com/spreadsheets/d/1Ij2seaYUdpKSak54F4kupJ0NpWYyTW4HV-aRzSyYILc/edit?usp=sharing)
 
 
-# Perguntas e respostas utilizando as querys do Bando de Dados 📝
+# Perguntas e respostas utilizando as queries do Banco de Dados 📝
 
 ## Quais os produtos mais vendidos
 ```SQL
