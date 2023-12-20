@@ -89,7 +89,7 @@ Com as tabelas criadas, precisamos definir quais serão os relacionamentos entre
 
 # Implementação do Banco de Dados 🛢️
 
-### Tabela Clientes
+## Tabela Clientes
 
 Os atributos `nomes_de_pessoas`, `endereco_cl` e `telefone_clientes` da Tabela Clientes foram gerados de forma manual. Os e-mails foram feitos através da seguinte função em **Python**:
 
@@ -117,7 +117,7 @@ Usamos o laço de repetição `for` para juntar todos os dados e armazena-los no
 for i in range(len(emails_aleatorios)):
     print(f"('{nomes_de_pessoas[i]}', '{endereco_cl[i]}', 'Diamantina', '{emails_aleatorios[i]}', {numeros_clientes[i]}),")
 ```
-### Tabela Restaurantes e Tabela de Produtoss
+## Tabela Restaurantes e Tabela de Produtos
 
 Ambas as tabelas foram criadas manualmente, e assim como na tabela de clientes, definimos a cidade como **Diamantina**.
 
@@ -139,7 +139,7 @@ for i in range(len(itens)):
 ```
 
 
-### Tabela Pedidos
+## Tabela Pedidos
 
 Assim como nas tabelas anteriores os valores e o itens da Tabela Pedidos foram criados de forma manual, porém, para criar o status, data e hora do pedido foi feita uma função para criar essas dados de forma aleatória.
 
