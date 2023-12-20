@@ -1,15 +1,15 @@
-# Modelagem e criação de dados com Postgres para a "DeliFoods"
+# Modelagem e criação de dados com Postgres para a "DeliFoods"🍔
 
 Este é um projeto desenvolvido para o módulo de Modelagem de Banco de Dados para o Curso de Análise de Dados da Ada.tech, em parceria com o Ifood
 
-# Integrantes do projeto
+# Integrantes do projeto 👥
 - [Alan Gonçalves](https://github.com/alansgoncalves)
 - [Élen Silva Almeida](https://github.com/Lely0sa)
 - [Gabriel Matina](https://github.com/gabrielmatina)
 - [Gustavo Dell Anhol Oliveira](https://github.com/gudaoliveira)
 - [Patrick Kwan](https://github.com/ptkwan)
 
-## BRIEFING
+## BRIEFING 📋
 
 👉 _[Clique aqui para ler o briefing do projeto](https://github.com/gudaoliveira/delicia-foods_modelagem_banco_de_dados/blob/main/briefing.md)_
 
@@ -17,7 +17,7 @@ DeliFoods, um inovador sistema de administraçao de dados, conecta os amantes da
 
 O segredo por trás do sucesso do DeliFoods reside em uma modelagem de banco de dados robusta. Cada restaurante é cuidadosamente registrado, detalhes dos pedidos são registrados minuciosamente, e os produtos deliciosos são catalogados para garantir uma experiência de pedidos fluida e sem complicações.
 
-## MODELAGEM DE DADOS
+## MODELAGEM DE DADOS 🗂️
 
 O primeiro passo foi entender qual seria a necessidade do cliente, quais seriam os processos e o fluxo dos dados na plataforma, assim, conseguimos definir quais seriam as entidades e seus atributos no nosso banco de dados, para isso temos que ter em mente o seguinte:
 
